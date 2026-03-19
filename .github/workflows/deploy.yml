@@ -32,9 +32,9 @@ jobs:
         run: |
           aws s3 sync . s3://${{ secrets.S3_BUCKET }} \
             --cache-control "public, max-age=0, must-revalidate" \
+            --exclude "*" \
             --include "*.html" \
-            --include "*.json" \
-            --exclude "*"
+            --include "*.json"
 
       - name: Invalidate CloudFront cache
         run: |
